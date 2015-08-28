@@ -7,7 +7,12 @@
 #include <Kokkos_Core.hpp>
 
 typedef typename Kokkos::TeamPolicy<>::member_type TeamType;
+#ifdef KOKKOS_HAVE_CUDA
+#define TEAM_SIZE 256
+#define TEAM_VECTOR_SIZE 32
+#else
 #define TEAM_SIZE 1
+#endif
 #define VECTOR_SIZE 16
 
 /// \def SINGLE determines whether single or double precision is built

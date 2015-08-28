@@ -244,7 +244,7 @@ int eamForce(SimFlat* s)
 
    int nNbrBoxes = 27;
    // loop over local boxes
-   Kokkos::parallel_reduce(Kokkos::TeamPolicy<>(s->boxes->nTotalBoxes,TEAM_SIZE,VECTOR_SIZE), KOKKOS_LAMBDA(const TeamType& team, double& etot_team)
+   Kokkos::parallel_reduce(Kokkos::TeamPolicy<>(s->boxes->nTotalBoxes,TEAM_VECTOR_SIZE,VECTOR_SIZE), KOKKOS_LAMBDA(const TeamType& team, double& etot_team)
    {
       const int iBox = team.league_rank();
       int nIBox = s->boxes->nAtoms[iBox];
@@ -331,7 +331,7 @@ int eamForce(SimFlat* s)
 
    // third pass
    // loop over local boxes
-   Kokkos::parallel_for(Kokkos::TeamPolicy<>(s->boxes->nTotalBoxes,TEAM_SIZE,VECTOR_SIZE), KOKKOS_LAMBDA(const TeamType& team)
+   Kokkos::parallel_for(Kokkos::TeamPolicy<>(s->boxes->nTotalBoxes,TEAM_VECTOR_SIZE,VECTOR_SIZE), KOKKOS_LAMBDA(const TeamType& team)
    {
       const int iBox = team.league_rank();
       int nIBox = s->boxes->nAtoms[iBox];
