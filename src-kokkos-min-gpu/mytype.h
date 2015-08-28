@@ -11,6 +11,7 @@ typedef typename Kokkos::TeamPolicy<>::member_type TeamType;
 #define TEAM_SIZE 256
 #define TEAM_VECTOR_SIZE 32
 #else
+#define TEAM_VECTOR_SIZE 32
 #define TEAM_SIZE 1
 #endif
 #define VECTOR_SIZE 16
